@@ -20,7 +20,7 @@ threads << Thread.new {
   loop {
     message = parent.gets();
 
-    if(message.nil?())
+    if (message.nil?())
       break;
     end
 
@@ -34,7 +34,7 @@ threads << Thread.new {
   loop {
     message = child.gets();
 
-    if(message.nil?)
+    if (message.nil?())
       break;
     end
 
