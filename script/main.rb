@@ -11,7 +11,7 @@ parent.write("welcome\n");
 child = server.accept();
 puts("Child come\n");
 
-parent.write("start\nparent\n");
+parent.write("start\nisParent\n");
 child.write("welcome\nstart\n");
 
 threads = Array.new();
@@ -25,8 +25,8 @@ threads << Thread.new {
     end
 
     puts("parent: #{message}");
-    parent.write(message);
-    child.write(message);
+    parent.write("parent," + message);
+    child.write("parent," + message);
   }
 }
 
@@ -39,8 +39,8 @@ threads << Thread.new {
     end
 
     puts("child: #{message}");
-    parent.write(message);
-    child.write(message);
+    parent.write("child," + message);
+    child.write("child," + message);
   }
 }
 
