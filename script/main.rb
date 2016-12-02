@@ -7,7 +7,16 @@ puts "Server is running at 50000."
 socket = server.accept();
 
 loop {
-  message = socket.gets();
-  puts(message);
-  socket.write(message);
+  begin
+    message = socket.gets();
+
+    if(message.nil?)
+      break;
+    end
+
+    puts(message);
+    socket.write(message);
+  rescue
+    break;
+  end
 }
