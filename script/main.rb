@@ -11,8 +11,10 @@ parent.write("welcome\n");
 child = server.accept();
 puts("Child come\n");
 
-parent.write("start\nisParent\n");
-child.write("welcome\nstart\n");
+time = Time.now.to_i + 3;
+
+parent.write("start,#{time}\nisParent\n");
+child.write("welcome\nstart,#{time}\n");
 
 threads = Array.new();
 
