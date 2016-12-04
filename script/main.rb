@@ -25,8 +25,15 @@ threads << Thread.new {
     end
 
     puts("parent: #{message}");
-    parent.write("parent," + message);
-    child.write("parent," + message);
+    args = message.chop().split(",");
+
+    if (args[0] == "move")
+      parent.write("parent," + args[1] + "\n");
+      child.write("parent," + args[1] + "\n");
+    elsif (args[0] == "goal")
+      parent.write("goal\n");
+      child.write("goal\n");
+    end
   }
 }
 
@@ -39,8 +46,12 @@ threads << Thread.new {
     end
 
     puts("child: #{message}");
-    parent.write("child," + message);
-    child.write("child," + message);
+    args = message.split(",");
+
+    if (args[0] == "move")
+      parent.write("child," + args[1]);
+      child.write("child," + args[1]);
+    end
   }
 }
 
